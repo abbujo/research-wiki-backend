@@ -1,8 +1,10 @@
 from flask import request, jsonify, Flask
 from pymongo import MongoClient
 import os
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app)
 
 
 client = MongoClient(
@@ -39,7 +41,9 @@ def api_label():
 
     # Use the jsonify function from Flask to convert our list of
     # Python dictionaries to the JSON format.
-    return jsonify(results)
+    response =jsonify(results)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 if __name__=="__main__":
     port = int(os.environ.get('PORT', 5000))
