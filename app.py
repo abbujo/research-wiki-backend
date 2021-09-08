@@ -4,7 +4,6 @@ from flask_cors import CORS, cross_origin
 import os
 
 app = Flask(__name__)
-CORS(app)
 
 
 client = MongoClient(
@@ -13,14 +12,12 @@ client.list_database_names()
 db = client["TestPyMongo"]
 
 @app.route('/', methods=['GET'])
-@cross_origin
 def home():
     return "<h1>Research Wiki Archive</h1><p>This site is a prototype API for Research Wiki.</p>"
 
 # To perform a search
 # /api/v1/resources?label=Abhishek
 @app.route('/api/v1/resources', methods=['GET'])
-@cross_origin
 def api_label():
     # Check if an Label was provided as part of the URL.
     # If Label is provided, assign it to a variable.
@@ -45,6 +42,6 @@ def api_label():
     # Python dictionaries to the JSON format.
     return jsonify(results)
 
-if __name__=="__main__":
-  port = int(os.environ.get('PORT', 5000))
-  app.run(host='0.0.0.0', port=port)
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
