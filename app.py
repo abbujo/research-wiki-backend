@@ -16,7 +16,7 @@ db = client["TestPyMongo"]
 def home():
     return "<h1>Research Wiki Archive</h1><p>This site is a prototype API for Research Wiki.</p>"
 
-@app.route('/api/v1/query1', methods=['GET'])
+@app.route('/api/v1/query', methods=['GET'])
 def api_query1():
     if 'label' in request.args:
         label = request.args['label']
@@ -29,7 +29,8 @@ def api_query1():
     # Create an empty list for our results
     results = []
     for x in data:
-      results.append(x.res)
+        print(x)
+        results.append(x.res)
 
     response =jsonify(results)
     response.headers.add('Access-Control-Allow-Origin', '*')
