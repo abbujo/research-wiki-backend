@@ -29,12 +29,12 @@ def api_query1():
     # Create an empty list for our results
     results = []
     for x in data:
-      results.append(x)
+      results.append(x.res)
 
     response =jsonify(results)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
-    
+
 # To perform a search
 # /api/v1/resources?label=Abhishek
 @app.route('/api/v1/resources', methods=['GET'])
