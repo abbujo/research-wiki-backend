@@ -29,8 +29,8 @@ def api_query1():
     # Create an empty list for our results
     results = []
     for x in data:
-        print(x)
-        results.append(x.res)
+        print(x["res"])
+        results.append(x["res"])
 
     response =jsonify(results)
     response.headers.add('Access-Control-Allow-Origin', '*')
