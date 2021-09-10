@@ -16,6 +16,25 @@ db = client["TestPyMongo"]
 def home():
     return "<h1>Research Wiki Archive</h1><p>This site is a prototype API for Research Wiki.</p>"
 
+@app.route('/api/v1/query1', methods=['GET'])
+def api_query1():
+    if 'label' in request.args:
+        label = request.args['label']
+    else:
+        return "Error: No label field provided. Please specify a label."
+
+    collection_name = "query"
+    collection = db[collection_name]
+    data = collection.find({"label": label})
+    # Create an empty list for our results
+    results = []
+    for x in data:
+      results.append(x)
+
+    response =jsonify(results)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+    
 # To perform a search
 # /api/v1/resources?label=Abhishek
 @app.route('/api/v1/resources', methods=['GET'])
