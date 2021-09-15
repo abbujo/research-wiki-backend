@@ -43,9 +43,8 @@ def api_label():
     # Check if an Label was provided as part of the URL.
     # If Label is provided, assign it to a variable.
     # If no Label is provided, display an error in the browser.
-    if 'label' in request.args and 'parent' in request.args:
+    if 'label' in request.args:
         label = request.args['label']
-        parent = request.args['parent']
     else:
         return "Error: No label field provided. Please specify a label."
 
